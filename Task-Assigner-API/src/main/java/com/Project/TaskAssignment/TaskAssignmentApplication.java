@@ -1,13 +1,13 @@
-package projects.tempAssignment;
+package com.Project.TaskAssignment;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class TempAssignmentApplication {
+public class TaskAssignmentApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TempAssignmentApplication.class, args);
+		SpringApplication.run(TaskAssignmentApplication.class, args);
 	}
 
 }

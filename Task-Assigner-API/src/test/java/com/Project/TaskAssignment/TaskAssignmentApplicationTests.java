@@ -1,10 +1,10 @@
-package projects.tempAssignment;
+package com.Project.TaskAssignment;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class TempAssignmentApplicationTests {
+class TaskAssignmentApplicationTests {
 
 	@Test
 	void contextLoads() {
