@@ -1,19 +1,30 @@
 package com.Project.TaskAssignment.Task;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController()
 public class TaskController {
+
 	@Autowired
-	private TaskServices services;
+	private TaskServices taskServices;
 
 	@PostMapping(path = "/tasks", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<TaskEntity> addTask(@RequestBody TaskEntity dto) {
-		return null;
+	public ResponseEntity<TaskEntity> addTask(@RequestBody TaskEntity informationEntity) {
+
+		return new ResponseEntity<TaskEntity>(taskServices.PostTask(informationEntity), HttpStatus.OK);
+	}
+
+	@GetMapping(path = "/tasks")
+	public ResponseEntity<List<TaskEntity>> getAllTasks() {
+		return new ResponseEntity<List<TaskEntity>>(taskServices.GetAllTasks(), HttpStatus.OK);
 	}
 }
 

@@ -4,14 +4,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import com.Project.TaskAssignment.Task.TaskEntity;
 
 @Entity
+@Table(name = "Employee")
 public class EmployeeEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Number id;
+	private Integer id;
 	private String firstName;
 	private String lastName;
 	private TaskEntity[] tasks;
@@ -20,7 +22,7 @@ public class EmployeeEntity {
 		return id;
 	}
 
-	public void setId(Number id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
