@@ -20,7 +20,7 @@ import com.Project.TaskAssignment.Employee.EmployeeEntity;
 public class TaskEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	private Long id;
 	@Column
 	private Date startDate;
 	@Column
