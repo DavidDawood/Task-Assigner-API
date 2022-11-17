@@ -18,6 +18,18 @@ public class TaskServices {
 	public List<TaskEntity> GetAllTasks() {
 		return taskRepository.findAll();
 	}
+	public TaskEntity getTaskEntityById(Long id) {
+
+		final Optional<TaskEntity> foundTask = taskRepository.findById(id);
+
+		if(foundTask.isEmpty()) throw new Error("Task not found");
+		return foundTask.get();
+	}
+
+	public List<TaskEntity> GetAllTasksFiltered(Boolean check) {
+		return check ? taskRepository.findByAssignedEmployeeIsNotNull() : taskRepository.findByAssignedEmployeeIsNull();
+
+	}
 
 	public TaskEntity PostTask(TaskEntity taskEntity) {
 		return taskRepository.save(taskEntity);
@@ -34,8 +46,7 @@ public class TaskServices {
 		foundTask.get().setDescription(taskEntity.getDescription());
 		foundTask.get().setStartDate(taskEntity.getStartDate());
 		foundTask.get().setEndDate(taskEntity.getEndDate());
-		
-		System.out.println(foundTask.get().getName());
+
 		return taskRepository.save(foundTask.get());
 	}
 }
