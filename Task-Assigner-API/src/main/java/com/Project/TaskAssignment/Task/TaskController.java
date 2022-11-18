@@ -29,8 +29,10 @@ public class TaskController {
 	}
 
 	@PatchMapping(path = "/tasks/{id}", consumes = "application/json", produces = "application/json")
-	public ResponseEntity<TaskEntity> updateTask(@RequestBody TaskEntity informmationEntity, @PathVariable Long id) {
-		return new ResponseEntity<TaskEntity>(taskServices.UpdateTask(id, informmationEntity), HttpStatus.OK);
+	public ResponseEntity<TaskEntity> updateTask(@RequestBody TaskEntity informmationEntity, @PathVariable Long id,
+			@RequestParam(required = false) Long employeeId) {
+		return new ResponseEntity<TaskEntity>(taskServices.UpdateTask(id, informmationEntity, employeeId),
+				HttpStatus.OK);
 	}
 
 	@GetMapping(path = "/tasks")

@@ -9,17 +9,21 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.Project.TaskAssignment.Employee.EmployeeEntity;
+import com.Project.TaskAssignment.Employee.EmployeeServices;
 
 @Entity
-@Table(name = "Task")
+@Table(name = "Tasks")
 public class TaskEntity {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@Column
 	private Date startDate;
@@ -30,11 +34,16 @@ public class TaskEntity {
 	@Column
 	private String description;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY, optional = true)
+	@JoinColumn(name = "employee_id", nullable = true)
 	private EmployeeEntity assignedEmployee;
 
 	public Date getStartDate() {
 		return startDate;
+	}
+
+	public TaskEntity() {
+
 	}
 
 	public void setStartDate(Date startDate) {
@@ -61,7 +70,6 @@ public class TaskEntity {
 		return assignedEmployee;
 	}
 
-	@OneToMany(mappedBy = "EmployeeEntity", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public void setAssignedEmployee(EmployeeEntity assignedEmployee) {
 		this.assignedEmployee = assignedEmployee;
 	}

@@ -16,8 +16,6 @@ import com.Project.TaskAssignment.Task.TaskServices;
 public class EmployeeServices {
 	@Autowired
 	private EmployeeRepository employeeRepository;
-	@Autowired
-	private TaskServices taskServices;
 
 	public List<EmployeeEntity> GetAllEmployees() {
 		return employeeRepository.findAll();

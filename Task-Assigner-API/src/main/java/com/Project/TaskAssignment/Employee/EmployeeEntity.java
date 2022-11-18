@@ -1,33 +1,48 @@
 package com.Project.TaskAssignment.Employee;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.Project.TaskAssignment.Task.TaskEntity;
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "Employees")
 public class EmployeeEntity {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employee_id")
+	private Long id;
+	@Column
 	private String firstName;
+	@Column
 	private String lastName;
-	private TaskEntity[] tasks;
 
-	public Number getId() {
+	@OneToMany(mappedBy = "assignedEmployee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<TaskEntity> tasks;
+
+	public Long getId() {
 		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public Set<TaskEntity> getTasks() {
+		return tasks;
+	}
+
+	public void setTasks(Set<TaskEntity> tasks) {
+		this.tasks = tasks;
 	}
 
 	public void setFirstName(String firstName) {
@@ -42,11 +57,4 @@ public class EmployeeEntity {
 		this.lastName = lastName;
 	}
 
-	public TaskEntity[] getTasks() {
-		return tasks;
-	}
-
-	public void setTasks(TaskEntity[] tasks) {
-		this.tasks = tasks;
-	}
 }

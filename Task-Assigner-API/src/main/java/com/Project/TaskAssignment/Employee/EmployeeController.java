@@ -42,6 +42,6 @@ public class EmployeeController {
 	}
 }
 
-//GET /temps?jobId={jobId} - List temps that are available for a job based on the jobs date range
+// GET /temps?jobId={jobId} - List temps that are available for a job based on the jobs date range
 // findByStartDateBetween
 

@@ -8,9 +8,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.Project.TaskAssignment.Employee.EmployeeEntity;
+import com.Project.TaskAssignment.Employee.EmployeeServices;
+
 @Service
 @Transactional
 public class TaskServices {
+
+	@Autowired
+	private EmployeeServices employeeServices;
 
 	@Autowired
 	public TaskRepository taskRepository;
@@ -18,11 +24,13 @@ public class TaskServices {
 	public List<TaskEntity> GetAllTasks() {
 		return taskRepository.findAll();
 	}
+
 	public TaskEntity getTaskEntityById(Long id) {
 
 		final Optional<TaskEntity> foundTask = taskRepository.findById(id);
 
-		if(foundTask.isEmpty()) throw new Error("Task not found");
+		if (foundTask.isEmpty())
+			throw new Error("Task not found");
 		return foundTask.get();
 	}
 
@@ -35,13 +43,20 @@ public class TaskServices {
 		return taskRepository.save(taskEntity);
 	}
 
-	public TaskEntity UpdateTask(Long id, TaskEntity taskEntity) {
+	public TaskEntity UpdateTask(Long id, TaskEntity taskEntity, Long employeeId) {
 
 		Optional<TaskEntity> foundTask = taskRepository.findById(id);
 
 		if (foundTask.isEmpty())
 			throw new Error("Task not found");
-		foundTask.get().setAssignedEmployee(taskEntity.getAssignedEmployee());
+		if (employeeId != null) {
+			final EmployeeEntity employee = employeeServices.GetEmployeeById(employeeId);
+			foundTask.get().setAssignedEmployee(employee);
+		}
+		// THIS IS THE ISSUE
+		// when i add a task, then try to patch it with a employees Id, i get an infinite error
+		// it seems to be whenever i try to connect a manyToOne relationship this happens
+
 		foundTask.get().setName(taskEntity.getName());
 		foundTask.get().setDescription(taskEntity.getDescription());
 		foundTask.get().setStartDate(taskEntity.getStartDate());
