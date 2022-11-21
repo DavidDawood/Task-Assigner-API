@@ -26,7 +26,7 @@ public class EmployeeEntity {
 	@Column
 	private String lastName;
 
-	@OneToMany(mappedBy = "assignedEmployee", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL)
 	private Set<TaskEntity> tasks;
 
 	public Long getId() {

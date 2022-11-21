@@ -34,14 +34,13 @@ public class TaskEntity {
 	@Column
 	private String description;
 
-	@ManyToOne(fetch = FetchType.LAZY, optional = true)
-	@JoinColumn(name = "employee_id", nullable = true)
+	@ManyToOne
+	@JoinColumn(name = "employee_id")
 	private EmployeeEntity assignedEmployee;
 
 	public Date getStartDate() {
 		return startDate;
 	}
-
 	public TaskEntity() {
 
 	}
