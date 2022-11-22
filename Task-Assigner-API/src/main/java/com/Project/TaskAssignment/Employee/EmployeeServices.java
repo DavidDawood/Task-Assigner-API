@@ -37,16 +37,11 @@ public class EmployeeServices {
 		final List<EmployeeEntity> allTasks = employeeRepository.TestFinder();
 
 		return allTasks;
-		
-		// figure out on employeeRepository how to check relationships in mysql and search that way via its query
 
-		// so inside of every employee, check all their current tasks,
-		// - If the task is between the start date and end date of the task im checking,
-		// stop it and break
-		// - if no tasks are returned, it means we can do it, if there is even one, it
-		// means we cant
-		// - its must be OR, so if its start date is after the select tasks date OR its
-		// end dates
+		/* What to do, cant do it purely with mysql
+		 * Will need to get all tasks, of each employee, check all who are compatible, get their tasks
+		 * return an array of all who pass
+		 * This doesnt need to access tasks service as you can just get the tasks from the employee*/
 
 		// GET /temps?jobId={jobId} - List temps that are available for a job based on
 		// the jobs date range
