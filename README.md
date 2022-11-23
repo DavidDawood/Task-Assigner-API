@@ -2,7 +2,7 @@
 
 # Images
 
-!(General Structure)[./Images/1]
+![General Structure](./Images/1.png)
 
 # Description
 
