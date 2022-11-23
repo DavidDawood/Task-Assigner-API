@@ -53,10 +53,6 @@ public class TaskServices {
 			final EmployeeEntity employee = employeeServices.GetEmployeeById(employeeId);
 			foundTask.get().setAssignedEmployee(employee);
 		}
-		// THIS IS THE ISSUE
-		// when i add a task, then try to patch it with a employees Id, i get an infinite error
-		// it seems to be whenever i try to connect a manyToOne relationship this happens
-		// 
 
 		foundTask.get().setName(taskEntity.getName());
 		foundTask.get().setDescription(taskEntity.getDescription());

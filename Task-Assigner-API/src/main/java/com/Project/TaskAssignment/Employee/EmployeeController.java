@@ -34,14 +34,4 @@ public class EmployeeController {
 	public ResponseEntity<EmployeeEntity> getEmployeeById(@PathVariable(value = "id") Long id) {
 		return new ResponseEntity<EmployeeEntity>(employeeServices.GetEmployeeById(id), HttpStatus.OK);
 	}
-
-	@GetMapping("/employee/available")
-	public ResponseEntity<List<EmployeeEntity>> getAvailableEmployees(@RequestParam(required = true) Long jobId) {
-		return new ResponseEntity<List<EmployeeEntity>>(employeeServices.GetAllEmployeesAvailable(jobId),
-				HttpStatus.OK);
-	}
 }
-
-// GET /temps?jobId={jobId} - List temps that are available for a job based on the jobs date range
-// findByStartDateBetween
-
